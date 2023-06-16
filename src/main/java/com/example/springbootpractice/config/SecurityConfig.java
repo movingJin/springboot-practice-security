@@ -16,14 +16,15 @@ public class SecurityConfig {//extends WebSecurityConfigurerAdapter {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/**").authenticated()
+                .antMatchers("/register", "/login", "/member/new", "/loginProc").permitAll()
+                .antMatchers("/member/**").authenticated()
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-                .anyRequest().permitAll()
+                .anyRequest().denyAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/loginProc")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/member/welcome")
                 .and().build();
     }
     @Bean

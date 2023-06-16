@@ -14,8 +14,10 @@ import java.time.LocalDateTime;
                 columnNames = {"email"} )
         })
 @DynamicUpdate
+@Builder
 @Getter
 @Setter
+@AllArgsConstructor @NoArgsConstructor
 public class Member {
 
     @Id
@@ -24,15 +26,13 @@ public class Member {
 
     @Column(nullable = false, length = 50, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
+
     @Column(nullable = false, length = 50)
     private String name;
 
-    public Member() {
+    private String role; //ROLE_USER, ROLE_ADMIN
 
-    }
-
-    public Member(String email, String name) {
-        this.email = email;
-        this.name = name;
-    }
 }
