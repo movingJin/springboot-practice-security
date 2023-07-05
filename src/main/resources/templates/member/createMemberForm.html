@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div class="container">
-    <form action="/member/new" method="post">
+    <form action="/member/new" method="post" onsubmit="return ensureRegister();">
         <div class="form-group">
             <label for="name">e-mail</label>
             <input type="text" id="email" name="email" placeholder="e-mail을 입력하세요.">
@@ -15,4 +15,9 @@
     </form>
 </div> <!-- /container -->
 </body>
+<script>
+    function ensureRegister() {
+        return confirm("입력한 정보로 회원가입하시겠습니까??");
+    }
+</script>
 </html>
